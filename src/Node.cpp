@@ -1,19 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "ANSI_colors.h"
 #include "Node.h"
 
 void node_dump(Node_t* node)
 {
     if (!node) return;
-    printf(OP_OUT " ", *((int*)node->data));
+    printf(print_lgreen(OP_OUT "\t"), *((ELEM*)node->data));
     node_dump(node->next);
 }
 
 void node_dtor(Node_t* node)
 {
     if (!node) return;
-    
+
     if (node->data)
         free(node->data);
 

@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "ANSI_colors.h"
 #include "Queue.h"
 #include "Node.h"
 
@@ -18,7 +19,7 @@ bool queue_ctor(Queue_t** queue)
 void queue_dump(Queue_t* queue)
 {
     if (!queue) return;
-    printf("Queue:\n");
+    printf(print_lgreen("Queue:\n"));
     node_dump(queue->first);
     printf("\n");
 }
@@ -61,7 +62,7 @@ bool push_front(Queue_t* queue, size_t elem_size, void* data)
     return false;
 }
 
-bool pop_front(Queue_t* queue)
+bool pop_front(Queue_t* queue, ELEM* elem)
 {
     if (!queue->first) return true;
 
@@ -69,6 +70,8 @@ bool pop_front(Queue_t* queue)
 
     if (queue->first->next)
         queue->first->next->prev = nullptr;
+
+    *elem = *((ELEM*)queue->first->data);
 
     free(queue->first->data);
     queue->first->next = nullptr;
@@ -105,7 +108,7 @@ bool push_back(Queue_t* queue, size_t elem_size, void* data)
     return false;
 }
 
-bool pop_back(Queue_t* queue)
+bool pop_back(Queue_t* queue, ELEM* elem)
 {   
     if (!queue->last) return true;
 
@@ -113,6 +116,8 @@ bool pop_back(Queue_t* queue)
 
     if (queue->last->prev)
         queue->last->prev->next = nullptr;
+
+    *elem = *((ELEM*)queue->last->data);
 
     free(queue->last->data);
     queue->last->next = nullptr;

@@ -1,7 +1,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define OP_OUT    "%d"
-#define ELEM_SIZE sizeof(int)
+#define ELEM      double
+#define OP_OUT    "%.2lf"
+#define ELEM_SIZE sizeof(ELEM)
 
 #endif // CONFIG_H

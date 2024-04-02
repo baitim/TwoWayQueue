@@ -12,46 +12,53 @@ int main()
                        "# (c) Baidiusenov Timur, 2024\n\n"));
 
     Queue_t* queue = nullptr;
+    ELEM push_elem, pop_elem;
     bool err = queue_ctor(&queue);
     if (err) goto error;
 
     for (int i = 0; i < 5; i++) {
-        err = push_front(queue, ELEM_SIZE, &i);
+        push_elem = (ELEM) i;
+        err = push_front(queue, ELEM_SIZE, &push_elem);
         if (err) goto error;
     }
 
     queue_dump(queue);
 
     for (int i = 0; i < 10; i++) {
-        err = push_back(queue, ELEM_SIZE, &i);
+        push_elem = (ELEM) i;
+        err = push_back(queue, ELEM_SIZE, &push_elem);
         if (err) goto error;
     }
 
     queue_dump(queue);
 
     for (int i = 0; i < 8; i++) {
-        err = pop_front(queue);
+        err = pop_front(queue, &pop_elem);
         if (err) goto error;
+        printf(print_lcyan("pop front elem = ") print_lyellow(OP_OUT)  "\n", pop_elem);
     }
 
     queue_dump(queue);
 
     for (int i = 0; i < 4; i++) {
-        err = pop_back(queue);
+        err = pop_back(queue, &pop_elem);
         if (err) goto error;
+        printf(print_lcyan("pop back elem = ") print_lyellow(OP_OUT) "\n", pop_elem);
     }
 
     queue_dump(queue);
 
     for (int i = 0; i < 5; i++) {
-        err = push_front(queue, ELEM_SIZE, &i);
+        push_elem = (ELEM) i;
+        err = push_front(queue, ELEM_SIZE, &push_elem);
         if (err) goto error;
     }
 
     queue_dump(queue);
 
     for (int i = 0; i < 10; i++) {
-        err = push_back(queue, ELEM_SIZE, &i);
+        push_elem = (ELEM) i;
+        err = push_back(queue, ELEM_SIZE, &push_elem);
         if (err) goto error;
     }
 
