@@ -13,7 +13,12 @@ void node_dump(Node_t* node)
 void node_dtor(Node_t* node)
 {
     if (!node) return;
-    free(node->data);
-    node_dtor(node->next);
-    free(node->next);
+    
+    if (node->data)
+        free(node->data);
+
+    if (node->next) {
+        node_dtor(node->next);
+        free(node->next);
+    }
 }

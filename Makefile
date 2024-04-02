@@ -14,7 +14,7 @@ CFLAGS   = # -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++\
 -Itests -Isrc\
 -fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 
-LFLAGS   = -lsfml-graphics -lsfml-window -lsfml-system
+LFLAGS   = 
 
 CPP      = g++
 LINKER   = g++

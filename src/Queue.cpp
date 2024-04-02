@@ -26,8 +26,12 @@ void queue_dump(Queue_t* queue)
 void queue_dtor(Queue_t* queue)
 {
     if (!queue) return;
-    node_dtor(queue->first);
-    free(queue->first);
+
+    if (queue->first) {
+        node_dtor(queue->first);
+        free(queue->first);
+    }
+
     free(queue);
 }
 
@@ -59,9 +63,12 @@ bool push_front(Queue_t* queue, size_t elem_size, void* data)
 
 bool pop_front(Queue_t* queue)
 {
+    if (!queue->first) return true;
+
     Node_t* new_first = queue->first->next;
 
-    queue->first->next->prev = nullptr;
+    if (queue->first->next)
+        queue->first->next->prev = nullptr;
 
     free(queue->first->data);
     queue->first->next = nullptr;
@@ -100,9 +107,12 @@ bool push_back(Queue_t* queue, size_t elem_size, void* data)
 
 bool pop_back(Queue_t* queue)
 {   
+    if (!queue->last) return true;
+
     Node_t* new_last = queue->last->prev;
 
-    queue->last->prev->next = nullptr;
+    if (queue->last->prev)
+        queue->last->prev->next = nullptr;
 
     free(queue->last->data);
     queue->last->next = nullptr;
