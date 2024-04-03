@@ -7,9 +7,10 @@
 
 bool queue_ctor(Queue_t** queue)
 {
-    *queue = (Queue_t*) malloc(sizeof(Queue_t*));
+    *queue = (Queue_t*) malloc(sizeof(Queue_t));
     if (!(*queue)) 
         return true;
+
     (*queue)->first = nullptr;
     (*queue)->last  = nullptr;
 
